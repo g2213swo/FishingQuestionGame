@@ -1,5 +1,5 @@
 name: FishingQuestionGame
-version: '${version}'
+version: '0.0.2'
 main: me.g2213swo.fishingquestiongame.FishingQuestionGame
 api-version: '1.20'
 depend:

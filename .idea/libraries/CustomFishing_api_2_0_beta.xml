@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="CustomFishing-api-2.0-beta">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/CustomFishing-api-2.0-beta.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

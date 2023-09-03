@@ -8,10 +8,10 @@
 4. 在`plugins`文件夹中找到`CustomFishing`文件夹，进入`contents/minigames`文件夹，找到`default.yml`文件或添加自己的文件，增加以下配置
 ```yaml
 chat-game: # 可随意替换为其他名称
-  game-type: chat-game
+  game-type: question-game
   title: '<gray><key:key.use> if true; <red><key:key.jump><gray> if false.'
   subtitle: '{question}'
-  chat-game:
+  question-game:
     - question: "CustomFishing 是大默米出的插件吗？"
       right: false
     - question: "CustomFishing 是小默米出的插件吗？"
