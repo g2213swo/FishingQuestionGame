@@ -1,0 +1,6 @@
+name: FishingQuestionGame
+version: '${version}'
+main: me.g2213swo.fishingquestiongame.FishingQuestionGame
+api-version: '1.20'
+depend:
+  - CustomFishing
