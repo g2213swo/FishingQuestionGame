@@ -11,4 +11,11 @@ public enum QuizType {
             default -> throw new IllegalArgumentException("Unknown quiz type: " + string);
         };
     }
+
+    public static String getConfigString(QuizType quizType) {
+        return switch (quizType) {
+            case TRUE_OR_FALSE -> "true_or_false";
+            case MULTIPLE_CHOICE -> "multiple_choice";
+        };
+    }
 }

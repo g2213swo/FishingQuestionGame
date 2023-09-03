@@ -85,9 +85,7 @@ public class QuestionGameCreator implements GameManager.GameCreator {
         }
         plugin.getLogger().info("Loaded " + quizSet.size() + " quiz");
 
-        int randomIndex = new Random().nextInt(quizSet.size());
-        Quiz quiz = quizSet.toArray(new Quiz[0])[randomIndex];
-        return new QuestionGame(configurationSection, quiz);
+        return new QuestionGame(configurationSection, quizSet);
     }
 
     public void unload() {

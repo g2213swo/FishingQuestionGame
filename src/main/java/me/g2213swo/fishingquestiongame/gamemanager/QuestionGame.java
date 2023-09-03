@@ -14,26 +14,37 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.FishHook;
 import org.bukkit.entity.Player;
 
+import java.util.Random;
+import java.util.Set;
+
 /**
  * 具体Game的实现
  */
 public class QuestionGame implements Game {
     private final ConfigurationSection section;
 
-    private final Quiz quiz;
+    private final Set<Quiz> quizSet;
 
-    public QuestionGame(ConfigurationSection section, Quiz quiz) {
+    public QuestionGame(ConfigurationSection section, Set<Quiz> quizSet) {
         this.section = section;
-        this.quiz = quiz;
+        this.quizSet = quizSet;
     }
 
     @Override
     public GamingPlayer start(Player player, FishHook fishHook, GameSettings gameSettings) {
         return new AbstractGamingPlayer(player, fishHook, gameSettings) {
             private final Title title;
+
+            private final Random random = new Random();
+
+            private final Quiz quiz;
+
             {
-                var titleString = section.getString("title");
-                var subTitleString = section.getString("subtitle");
+                int randomIndex = random.nextInt(quizSet.size());
+                quiz = quizSet.toArray(new Quiz[0])[randomIndex];
+
+                var titleString = section.getString("title." + QuizType.getConfigString(quiz.type()));
+                var subTitleString = section.getString("subtitle." + QuizType.getConfigString(quiz.type()));
 
                 titleString = titleString.replace("{question}", quiz.question());
                 subTitleString = subTitleString.replace("{question}", quiz.question());
@@ -77,6 +88,8 @@ public class QuestionGame implements Game {
             @Override
             public boolean onRightClick() {
                 if (quiz.type() != QuizType.TRUE_OR_FALSE) {
+                    success = false;
+                    endGame();
                     return false;
                 }
 
@@ -101,7 +114,9 @@ public class QuestionGame implements Game {
                     endGame();
                     return true;
                 }
-                return false;
+                success = false;
+                endGame();
+                return true;
             }
         };
     }
