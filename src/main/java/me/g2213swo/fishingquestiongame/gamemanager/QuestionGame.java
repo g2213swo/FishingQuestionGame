@@ -7,7 +7,7 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.title.Title;
 import net.kyori.adventure.util.Ticks;
 import net.momirealms.customfishing.api.mechanic.game.AbstractGamingPlayer;
-import net.momirealms.customfishing.api.mechanic.game.Game;
+import net.momirealms.customfishing.api.mechanic.game.GameInstance;
 import net.momirealms.customfishing.api.mechanic.game.GameSettings;
 import net.momirealms.customfishing.api.mechanic.game.GamingPlayer;
 import org.bukkit.configuration.ConfigurationSection;
@@ -20,7 +20,7 @@ import java.util.Set;
 /**
  * 具体Game的实现
  */
-public class QuestionGame implements Game {
+public class QuestionGame implements GameInstance {
     private final ConfigurationSection section;
 
     private final Set<Quiz> quizSet;

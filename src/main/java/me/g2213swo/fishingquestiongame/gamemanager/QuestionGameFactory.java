@@ -1,38 +1,34 @@
 package me.g2213swo.fishingquestiongame.gamemanager;
 
-import me.g2213swo.fishingquestiongame.FishingQuestionGame;
 import me.g2213swo.fishingquestiongame.quiz.MultipleChoiceQuiz;
 import me.g2213swo.fishingquestiongame.quiz.Quiz;
 import me.g2213swo.fishingquestiongame.quiz.QuizType;
 import me.g2213swo.fishingquestiongame.quiz.TrueOrFalseQuiz;
 import net.momirealms.customfishing.api.CustomFishingPlugin;
-import net.momirealms.customfishing.api.manager.GameManager;
-import net.momirealms.customfishing.api.mechanic.game.Game;
+import net.momirealms.customfishing.api.mechanic.game.GameFactory;
+import net.momirealms.customfishing.api.mechanic.game.GameInstance;
 import org.bukkit.configuration.ConfigurationSection;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
- *  创建一个实现GameManager.GameCreator的类
+ * 创建一个实现GameFactory的类
  */
-public class QuestionGameCreator implements GameManager.GameCreator {
-    private final FishingQuestionGame plugin;
-
-    private final CustomFishingPlugin customFishingPlugin;
+public class QuestionGameFactory implements GameFactory {
+    private final CustomFishingPlugin plugin;
 
     private final Set<Quiz> quizSet;
 
-    public QuestionGameCreator(FishingQuestionGame plugin, CustomFishingPlugin customFishingPlugin) {
+    public QuestionGameFactory(CustomFishingPlugin plugin) {
         this.plugin = plugin;
-        this.customFishingPlugin = customFishingPlugin;
         this.quizSet = new HashSet<>();
-
-        // 注册内容
-        customFishingPlugin.getGameManager().registerGameType("question-game", this);
     }
 
     @Override
-    public Game setArgs(ConfigurationSection configurationSection) {
+    public GameInstance setArgs(ConfigurationSection configurationSection) {
         List<Map<?, ?>> chatGames = configurationSection.getMapList("question-game");
 
         for (Map<?, ?> chatGame : chatGames) {
@@ -86,9 +82,5 @@ public class QuestionGameCreator implements GameManager.GameCreator {
         plugin.getLogger().info("Loaded " + quizSet.size() + " quiz");
 
         return new QuestionGame(configurationSection, quizSet);
-    }
-
-    public void unload() {
-        customFishingPlugin.getGameManager().unregisterGameType("chat-game");
     }
 }
