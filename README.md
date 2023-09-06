@@ -5,8 +5,7 @@
 1. 下载本Expansion
 2. 将**CustomFishing**插件放入服务器的`plugins`文件夹中
 3. 将本Expansion放入**CustomFishing**插件的`expansions`文件夹中
-4. 重启服务器
-5. 在`plugins`文件夹中找到`CustomFishing`文件夹，进入`contents/minigames`文件夹，找到`default.yml`文件或添加自己的文件，增加以下配置
+4. 在`plugins`文件夹中找到`CustomFishing`文件夹，进入`contents/minigames`文件夹，找到`default.yml`文件或添加自己的文件，增加以下配置
     ```yaml
     question-game:
       game-type: question-game
@@ -29,7 +28,7 @@
             - "XiaoMoMi"
             - "小默米"
     ```
-6. 在`plugins`文件夹中找到`CustomFishing`文件夹，进入`game-groups.yml`文件，在games选项下面增加以下配置
+5. 在`plugins`文件夹中找到`CustomFishing`文件夹，进入`game-groups.yml`文件，在games选项下面增加以下配置
    ```yaml
     mixed_accurate_click_group:
       groups:
@@ -68,4 +67,4 @@
       games:
         - question-game:1
     ```
-7. 输入`cf reload`重载插件，然后 **Enjoy it!**😀
+6. 输入`/cf reload`重载插件，然后 **Enjoy it!** 😀
